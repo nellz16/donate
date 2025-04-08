@@ -1,1 +1,38 @@
-
+<!-- templates/admin_dashboard.html -->
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard Admin</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="container">
+    <h2>Dashboard Admin</h2>
+    <table>
+        <tr>
+            <th>TRX-ID</th>
+            <th>Nominal + Fee</th>
+            <th>Status</th>
+            <th>Detail</th>
+            <th>Hapus</th>
+        </tr>
+        {% for trx in transactions %}
+        <tr>
+            <td>{{ trx[0] }}</td>
+            <td>Rp {{ "{:,}".format(trx[1]).replace(",", ".") }}</td>
+            <td>{{ trx[2] }}</td>
+            <td><a href="{{ url_for('admin_detail', trx_id=trx[0]) }}">Detail</a></td>
+            <td>
+                <a href="{{ url_for('delete_transaction', trx_id=trx[0]) }}"
+                   onclick="return confirm('Yakin ingin menghapus data ini?')">
+                   Hapus
+                </a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    <a href="{{ url_for('logout') }}"><button>Logout</button></a>
+</div>
+</body>
+</html>
