@@ -1,0 +1,139 @@
+/* static/style.css */
+
+/* Gaya umum untuk desktop dan tampilan lebar */
+body {
+    font-family: Arial, sans-serif;
+    background: #f2f2f2;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.creator-info {
+    margin-top: 10px;
+}
+
+.creator-info p {
+    margin: 0;
+}
+
+/* Logo Social Media, dengan penyesuaian ukuran gambar */
+.social img {
+    width: 30px;
+    margin: 0 4px;
+}
+
+/* Form styling */
+.form-group {
+    margin-bottom: 15px;
+}
+
+input[type="text"],
+textarea,
+input[type="password"] {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+}
+
+/* Tombol */
+button {
+    padding: 10px 15px;
+    background: #007BFF;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+button:hover {
+    background: #0056b3;
+}
+
+/* Tabel */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+table, th, td {
+    border: 1px solid #ddd;
+}
+th, td {
+    padding: 10px;
+    text-align: center;
+}
+
+/* Modal / Pop-up */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.modal-content {
+    background: #fff;
+    padding: 20px;
+    width: 90%;
+    max-width: 600px;
+    max-height: 80vh;
+    overflow-y: auto;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
+
+/* Login container */
+.login-container {
+    width: 300px;
+    margin: 100px auto;
+    background: #fff;
+    padding: 20px;
+    text-align: center;
+}
+
+/* Media Queries untuk perangkat mobile */
+@media (max-width: 768px) {
+    .container {
+        padding: 10px;
+    }
+
+    header h1 {
+        font-size: 24px;
+    }
+
+    .creator-info p {
+        font-size: 14px;
+    }
+
+    .social img {
+        width: 30px;
+        height: 30px;
+        margin: 0 5px;
+    }
+
+    .form-group label,
+    .form-group input,
+    .form-group textarea {
+        width: 100%;
+        font-size: 14px;
+    }
+
+    button {
+        width: 100%;
+        font-size: 16px;
+    }
+}
