@@ -1,1 +1,59 @@
-
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ZhivLux Donation</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="container">
+    <header>
+        <h1>ZhivLux</h1>
+        <div class="creator-info">
+            <p>Donasi seikhlasnya aja ya guys:3</p>
+            <!-- Menggunakan URL langsung untuk logo social media -->
+            <div class="social">
+                <a href="https://instagram.com/_mroker_" target="_blank">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Instagram_logo_2022.svg/120px-Instagram_logo_2022.svg.png" alt="Instagram" title="Instagram">
+                </a>
+                <a href="https://twitter.com/_mroker_" target="_blank">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Twitter_new_X_logo.png/120px-Twitter_new_X_logo.png" alt="Twitter" title="Twitter">
+                </a>
+                <a href="https://facebook.com/_mroker_" target="_blank">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/archive/5/51/20231203063623%21Facebook_f_logo_%282019%29.svg/120px-Facebook_f_logo_%282019%29.svg.png" alt="Facebook" title="Facebook">
+                </a>
+            </div>
+        </div>
+    </header>
+    <main>
+        {% if error %}
+        <div class="error" style="color:red; margin-bottom: 10px;">
+            {{ error }}
+        </div>
+        {% endif %}
+        <form id="donationForm" action="{{ url_for('process') }}" method="POST">
+            <div class="form-group">
+                <label for="name">Nama:</label>
+                <input type="text" id="name" name="name" value="{{ name or '' }}" required>
+                <label>
+                    <input type="checkbox" id="anon" name="anon"> Anonim
+                </label>
+            </div>
+            <div class="form-group">
+                <label for="message">Pesan:</label>
+                <!-- Tambahkan maxlength dan non-resizable pada textarea -->
+                <textarea id="message" name="message" rows="4" maxlength="1000" style="resize: none;">{{ message or '' }}</textarea>
+            </div>
+            <div class="form-group">
+                <label for="donation">Donasi (Rp):</label>
+                <input type="text" id="donation" name="donation" value="{{ donation or '' }}" required onkeyup="formatRupiah(this)">
+            </div>
+            <button type="submit">Konfirmasi</button>
+        </form>
+    </main>
+</div>
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
