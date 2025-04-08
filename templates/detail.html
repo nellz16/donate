@@ -1,1 +1,20 @@
-
+<!-- templates/detail.html -->
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Detail Transaksi - {{ transaction[0] }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="container">
+    <h2>Detail Transaksi</h2>
+    <p><strong>TRX-ID:</strong> {{ transaction[0] }}</p>
+    <p><strong>Nama:</strong> {{ transaction[1] }}</p>
+    <p><strong>Pesan:</strong> {{ transaction[2] }}</p>
+    <p><strong>Nominal Asli:</strong> Rp {{ "{:,}".format(transaction[3]).replace(",", ".") }}</p>
+    <p><strong>Nominal Final:</strong> Rp {{ "{:,}".format(transaction[5]).replace(",", ".") }}</p>
+    <p><strong>Tanggal:</strong> {{ transaction[6] }}</p>
+</div>
+</body>
+</html>
