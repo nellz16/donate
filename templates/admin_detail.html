@@ -1,1 +1,70 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Detail Transaksi - {{ transaction[0] }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        .modal {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        .modal-content {
+            background: #fff;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+            max-width: 500px;
+            width: 100%;
+        }
+        .message-box {
+            border: 1px solid #ccc;
+            padding: 10px;
+            background-color: #f8f8f8;
+            white-space: pre-wrap;
+            margin-bottom: 15px;
+            max-height: 200px;
+            overflow-y: auto;
+            font-family: monospace;
+        }
+        button {
+            padding: 8px 15px;
+            margin-top: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+<div class="modal">
+    <div class="modal-content">
+        <h2>Detail Transaksi</h2>
+        <p><strong>TRX-ID:</strong> {{ transaction[0] }}</p>
+        <p><strong>Nama:</strong> {{ transaction[1] }}</p>
+        <p><strong>Pesan:</strong></p>
+        <p>{{ transaction[2].strip() }}</p>
+        <p><strong>Nominal:</strong> Rp {{ "{:,}".format(transaction[3]).replace(",", ".") }}</p>
+        <p><strong>Nominal + Fee:</strong> Rp {{ "{:,}".format(transaction[5]).replace(",", ".") }}</p>
+        <p><strong>Status:</strong> {{ transaction[6] }}</p>
+        <p><strong>Tanggal:</strong> {{ transaction[7] }}</p>
 
+        {% if transaction[6] == 'Pending' %}
+        <a href="{{ url_for('update_status', trx_id=transaction[0]) }}">
+            <button>Ubah Menjadi Sukses</button>
+        </a>
+        {% endif %}
+
+        <br>
+        <button onclick="window.history.back();">Tutup</button>
+    </div>
+</div>
+</body>
+</html>
