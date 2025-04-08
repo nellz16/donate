@@ -1,1 +1,38 @@
-
+<!-- templates/confirm.html -->
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Konfirmasi Donasi</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="modal">
+    <div class="modal-content">
+        <h2>Konfirmasi Donasi</h2>
+        <p><strong>Nama:</strong> {{ name }}</p>
+        <p><strong>Pesan:</strong> {{ message }}</p>
+        <p><strong>Donasi:</strong> Rp {{ "{:,}".format(original_amount).replace(",", ".") }}</p>
+        <p><strong>Biaya Layanan:</strong> Rp {{ "{:,}".format(unique_fee).replace(",", ".") }}</p>
+        <div class="confirmation-buttons">
+            <!-- Tombol batal kembali ke form input -->
+            <button onclick="window.history.back();">Batal</button>
+        </div>
+        <hr>
+        <div class="payment-section">
+            <p><strong>TRX-ID:</strong> {{ trx_id }}</p>
+            <p><strong>Total Donasi:</strong> Rp {{ "{:,}".format(final_amount).replace(",", ".") }}</p>
+            <img src="{{ url_for('static', filename='images/qris.png') }}" alt="QRIS" width="200">
+            <ol>
+                <li>Buka aplikasi e-wallet kalian</li>
+                <li>Scan QRIS di atas, dan masukkan nominal Rp {{ "{:,}".format(final_amount).replace(",", ".") }}</li>
+                <li>Selesai</li>
+            </ol>
+            <a href="{{ url_for('detail', trx_id=trx_id) }}">
+                <button>Saya sudah bayar</button>
+            </a>
+        </div>
+    </div>
+</div>
+</body>
+</html>
